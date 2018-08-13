@@ -12,7 +12,8 @@ class Race:
         if traits is not None: race_object.traits = traits
 
     def displayDetails(a_race):
-        print("\nRace: " + a_race.name)
+        #print("Race: " + a_race.name)
+        print("***** " + a_race.name.upper() + " *****")
         print("Speed: " + str(a_race.speed))
         print("Racial bonuses:")
         if a_race.str != 0:
@@ -27,7 +28,7 @@ class Race:
                 print("     CHA: +" + str(a_race.cha))
         if a_race.wis != 0:
                 print("     WIS: +" + str(a_race.wis))
-        print("Traits:\n" + a_race.traits)
+        print("Traits:\n" + a_race.traits + "\n\n")
 
 #                                                       S, D, C, I, C, W
 Dwarf_Hill =            Race("Hill Dwarf",          25, 0, 0, 2, 0, 0, 1, "(1) Darkvision\n(2) Dwarven Resiliance\n(3) Dwarven Combat Training\n(4) Tool Proficiency\n(5) Stonecunning\n(6) Dwarven Toughness\nLanguages: Common and Dwarvish")
@@ -65,7 +66,7 @@ Genasi_Water =          Race("Water Genasi",        30, 0, 0, 2, 0, 0, 1, "(1) A
 Goliath =               Race("Goliath",             30, 2, 0, 1, 0, 0, 0, "(1) Natural Athlete\n(2) Stone's Endurance\n(3) Powerful Build\n(4) Mountain Born\nLanguages: Common and Giant")
 
 
-race_list = [ Dwarf_Hill, Dwarf_Mountain, Elf_High, Elf_Wood, Elf_Dark, Halfling_Lightfoot, Halfling_Stout, Human, Dragonborn, Gnome_Forest, Gnome_Rock, Gnome_Deep, Half_Orc, Tiefling, Genasi_Air, Genasi_Earth, Genasi_Fire, Genasi_Water, Goliath ]
+race_list = [ Dwarf_Hill, Dwarf_Mountain, Elf_High, Elf_Wood, Elf_Dark, Halfling_Lightfoot, Halfling_Stout, Human, Dragonborn, Gnome_Forest, Gnome_Rock, Gnome_Deep, Half_Orc, Tiefling, Aarakocra, Genasi_Air, Genasi_Earth, Genasi_Fire, Genasi_Water, Goliath ]
 race_names = []
 for race in race_list:
     race_names.append(race.name)
