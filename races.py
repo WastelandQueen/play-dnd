@@ -44,10 +44,10 @@ Elf_Dark =              CharRace("Dark Elf",            30, 0, 2, 0, 0, 1, 0, "(
 Halfling_Lightfoot =    CharRace("Lightfoot Halfling",  25, 0, 2, 0, 0, 1, 0, "(1) Lucky\n(2) Brave\n(3) Halfling Nimbleness\n(4) Naturally Stealthy\nLanguages: Common and Halfling")
 Halfling_Stout =        CharRace("Stout Halfling",      25, 0, 2, 1, 0, 0, 0, "(1) Lucky\n(2) Brave\n(3) Halfling Nimbleness\n(4) Stout Resiliance\nLanguages: Common and Halfling")
 
-Human =                 CharRace("Human",               20, 1, 1, 1, 1, 1, 1, "No extra traits\nLanguages: Common and one extra language of your choice")
-#Human_V =               CharRace("Human",               20, <choice> 1, <choice> 1, "Gain proficiency in one skill of your choice\nGain one feat of your choice\nLanguages: Common and one extra language of your choice")
+Human =                 CharRace("Human",               30, 1, 1, 1, 1, 1, 1, "No extra traits\nLanguages: Common and one extra language of your choice")
+#Human_V =               CharRace("Human Variant",       30, <choice> 1, <choice> 1, "Gain proficiency in one skill of your choice\nGain one feat of your choice\nLanguages: Common and one extra language of your choice")
 
-Dragonborn =            CharRace("Dragonborn",          20, 2, 0, 0, 0, 1, 0, "(1) Draconic Ancestry\n(2) Breath Weapon\n(3) Damage Resistance\nLanguages: Common and Draconic")
+Dragonborn =            CharRace("Dragonborn",          30, 2, 0, 0, 0, 1, 0, "(1) Draconic Ancestry\n(2) Breath Weapon\n(3) Damage Resistance\nLanguages: Common and Draconic")
 
 Gnome_Forest =          CharRace("Forest Gnome",        25, 0, 1, 0, 2, 0, 0, "(1)Darkvision\n(2) Gnome Cunning\n(3) Natural Illusionist\n(4) Speak with Small Beasts\nLanguages: Common and Gnomish")
 Gnome_Rock =            CharRace("Rock Gnome",          25, 0, 0, 1, 2, 0, 0, "(1)Darkvision\n(2) Gnome Cunning\n(3) Artificer's Lore\n(4) Tinker\nLanguages: Common and Gnomish")
@@ -73,25 +73,3 @@ race_list = [ Dwarf_Hill, Dwarf_Mountain, Elf_High, Elf_Wood, Elf_Dark, Halfling
 race_names = []
 for race_name in race_list:
     race_names.append(race_name.name)
-
-"""
-for a_race in race_list:
-    print("\nRace: " + a_race.name)
-    print("Speed: " + str(a_race.speed))
-    print("Racial bonuses:")
-    if a_race.str != 0:
-            print("     STR: +" + str(a_race.str))
-    if a_race.dex != 0:
-            print("     DEX: +" + str(a_race.dex))
-    if a_race.con != 0:
-            print("     CON: +" + str(a_race.con))
-    if a_race.int != 0:
-            print("     INT: +" + str(a_race.int))
-    if a_race.cha != 0:
-            print("     CHA: +" + str(a_race.cha))
-    if a_race.wis != 0:
-            print("     WIS: +" + str(a_race.wis))
-    print("Traits:\n" + a_race.traits)
-
-print("\n\n")
-"""

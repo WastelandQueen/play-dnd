@@ -16,6 +16,43 @@ def rollStats():
         scores.append(score)        # Adds this sum total to the list of scores
     return scores
 
+def allocateScores(scores_string, char_scores):
+    i = 0
+    char_scores_allocated = []
+    ability_scores = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
+    while i < 6:
+        if i == 0:  # display all scores
+            scores_string = ""
+            for score in char_scores:
+                scores_string = scores_string + str(score) + " "
+            print("\nHere are your scores: " + scores_string)
+            value = input("Which score value would you like to put in " + ability_scores[i] + "?: ")
+            if value in char_scores:
+                char_scores_allocated = char_scores_allocated + [value]
+                char_scores.remove(value)
+                i = i+1
+            else:
+                print("You must enter a valid remaining roll. Try again.\n")
+        elif i < 5: # display remaining scores
+            scores_string = ""
+            for score in char_scores:
+                scores_string = scores_string + str(score) + " "
+            print("\nRolls remaining: " + scores_string)
+            value = input("Which score value would you like to put in " + ability_scores[i] + "?: ")
+            if value in char_scores:
+                char_scores_allocated = char_scores_allocated + [value]
+                char_scores.remove(value)
+                i = i+1
+            else:
+                print("You must enter a valid remaining roll. Try again.\n")
+        else:       # i == 5: don't display any remaining scores (there's only one) just allocate it to wis
+            print("\nYour final score of " + scores_string + " will be allocated to WIS.")
+            char_scores_allocated = char_scores_allocated + [char_scores[0]]
+            char_scores.remove(char_scores[0]) # this line really isn't necessary, but what the hell
+            i = i+1
+    return char_scores_allocated
+
+
 """
 Begin main program. We start by finding the character's race.
 """
@@ -112,29 +149,37 @@ Thus ends the section to determine class, and begins the section to determine
 stats.
 """
 
-char_scores = rollStats()
-char_scores.sort(reverse=True)
-scores_string = ""
-for score in char_scores:
-    scores_string = scores_string + str(score) + " "
-
 print("Now, determine your ability scores. The six ability scores include: ")
-print("STR - Strength\nDEX - Dexterity\nCON - Constitution\nINT - Intelligence\nCHA - Charisma \nWIS - Wisdom\n")
-print("You may allocate the following rolls into any ability score.\n\nYour scores are: " + scores_string)
+print("STR - Strength           INT - Intelligence")
+print("DEX - Dexterity          CHA - Charisma")
+print("CON - Constitution       WIS - Wisdom\n")
 
-i = 0
-char_scores_allocated = []
+# Roll scores, with option to reroll if user is unhappy with rolls.
+# TODO: Add a limit to this. Maybe only allow the user three rolls total.
+while True:
+    char_scores = rollStats()
+    char_scores.sort(reverse=True)
+    scores_string = ""
+    for score in char_scores:
+        scores_string = scores_string + str(score) + " "
+    print("You rolled the following scores: " + scores_string)
+    cond = raw_input("Would you like to reroll (y/n)?: ")
+    if cond.lower() == "y":
+        print("Rerolling...\n")
+    elif cond.lower() == "n":
+        break
+    else:
+        print("Input not recognised. Rerolling scores.")
+
+print("")
+
 ability_scores = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
-while i < 6:
-     value = input("Which score value would you like to put in " + ability_scores[i] + "?: ")
-     char_scores_allocated = char_scores_allocated + [value]
-     i = i+1
-
 race_score_modifiers = char_race.getScores()
+char_scores_allocated = allocateScores(scores_string, char_scores)
 final_scores = []
 
-print("Your character's final scores are as follows:")
+print("\nYour " + chosen_race + " " + chosen_class + "'s final scores are as follows:")
 for i in range(6):
-    final_scores.append(race_score_modifiers[i] + char_scores_allocated[i])
+    final_scores.append(race_score_modifiers[i] + char_scores_allocated[i]) # Adds racial bonuses to rolled scores.
     print("     " + ability_scores[i] + ": " + str(final_scores[i]))
 print("\n\n")
