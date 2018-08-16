@@ -83,7 +83,7 @@ class CharClass:
         print("PRIMARY ABILITY: " + a_class.prime_ability)
         print("SAVING THROWS:   " + a_class.save_throw1 + " and " + a_class.save_throw2)
         print("ARMOR AND WEAPON PROFICIENCIES:  " + a_class.proficiencies)
-        print("SKILLS: ")
+        print("SKILL PROFICIENCIES: ")
         index = 0
         for skill in skills:
             index = index +1

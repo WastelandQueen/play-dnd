@@ -2,6 +2,7 @@ import diceFunctions as dF
 
 from races import *
 from classes import *
+from character import *
 
 def rollStats():
     # To make a new character, first roll 4d6, six times, and take the highest 3
@@ -240,6 +241,7 @@ char_class.displayAllDetails(skills)
 hp_lvl1 = char_class.hit_die + CON_mod
 
 #TODO: print final scores, health, etc
+#TODO: add alignment choices
 
 print("\nSTAT\tSCORE\tMOD")
 print("-------------------")
