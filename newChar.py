@@ -16,17 +16,21 @@ def rollStats():
         scores.append(score)        # Adds this sum total to the list of scores
     return scores
 
+def makeScoresString(char_scores):
+    scores_string = ""
+    for score in char_scores:
+        scores_string = scores_string + str(score) + " "
+    return scores_string
+
 def allocateScores(scores_string, char_scores):
     i = 0
     char_scores_allocated = []
-    ability_scores = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
+    ability_scores_string = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
     while i < 6:
         if i == 0:  # display all scores
-            scores_string = ""
-            for score in char_scores:
-                scores_string = scores_string + str(score) + " "
+            scores_string = makeScoresString(char_scores)
             print("\nHere are your scores: " + scores_string)
-            value = input("Which score value would you like to put in " + ability_scores[i] + "?: ")
+            value = input("Which score value would you like to put in " + ability_scores_string[i] + "?: ")
             if value in char_scores:
                 char_scores_allocated = char_scores_allocated + [value]
                 char_scores.remove(value)
@@ -34,11 +38,9 @@ def allocateScores(scores_string, char_scores):
             else:
                 print("You must enter a valid remaining roll. Try again.\n")
         elif i < 5: # display remaining scores
-            scores_string = ""
-            for score in char_scores:
-                scores_string = scores_string + str(score) + " "
+            scores_string = makeScoresString(char_scores)
             print("\nRolls remaining: " + scores_string)
-            value = input("Which score value would you like to put in " + ability_scores[i] + "?: ")
+            value = input("Which score value would you like to put in " + ability_scores_string[i] + "?: ")
             if value in char_scores:
                 char_scores_allocated = char_scores_allocated + [value]
                 char_scores.remove(value)
@@ -46,12 +48,29 @@ def allocateScores(scores_string, char_scores):
             else:
                 print("You must enter a valid remaining roll. Try again.\n")
         else:       # i == 5: don't display any remaining scores (there's only one) just allocate it to wis
+            scores_string = makeScoresString(char_scores)
             print("\nYour final score of " + scores_string + " will be allocated to WIS.")
             char_scores_allocated = char_scores_allocated + [char_scores[0]]
             char_scores.remove(char_scores[0]) # this line really isn't necessary, but what the hell
             i = i+1
     return char_scores_allocated
 
+
+"""
+A useful list of varaibles
+--------------------------
+Character name: char_name
+Character class: char_class
+Character race: char_race
+Character stats (STR, DEX, etc): final_scores
+STR: final_scores[0]
+DEX: final_scores[1]
+CON: final_scores[2]
+INT: final_scores[3]
+CHA: final_scores[4]
+WIS: final_scores[5]
+
+"""
 
 """
 Begin main program. We start by finding the character's race.
@@ -143,6 +162,7 @@ for class_name in class_list:
 char_class = class_list[index]
 
 char_class.displayDetails()
+skills = char_class.pickProficiencies()
 
 """
 Thus ends the section to determine class, and begins the section to determine
@@ -159,9 +179,7 @@ print("CON - Constitution       WIS - Wisdom\n")
 while True:
     char_scores = rollStats()
     char_scores.sort(reverse=True)
-    scores_string = ""
-    for score in char_scores:
-        scores_string = scores_string + str(score) + " "
+    scores_string = makeScoresString(char_scores)
     print("You rolled the following scores: " + scores_string)
     cond = raw_input("Would you like to reroll (y/n)?: ")
     if cond.lower() == "y":
@@ -170,10 +188,9 @@ while True:
         break
     else:
         print("Input not recognised. Rerolling scores.")
-
 print("")
 
-ability_scores = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
+ability_scores_string = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
 race_score_modifiers = char_race.getScores()
 char_scores_allocated = allocateScores(scores_string, char_scores)
 final_scores = []
@@ -181,5 +198,64 @@ final_scores = []
 print("\nYour " + chosen_race + " " + chosen_class + "'s final scores are as follows:")
 for i in range(6):
     final_scores.append(race_score_modifiers[i] + char_scores_allocated[i]) # Adds racial bonuses to rolled scores.
-    print("     " + ability_scores[i] + ": " + str(final_scores[i]))
+    print("     " + ability_scores_string[i] + ": " + str(final_scores[i]))
 print("\n\n")
+
+STR = final_scores[0]
+DEX = final_scores[1]
+CON = final_scores[2]
+INT = final_scores[3]
+CHA = final_scores[4]
+WIS = final_scores[5]
+
+STR_mod = (STR-10)/2
+DEX_mod = (DEX-10)/2
+CON_mod = (CON-10)/2
+INT_mod = (INT-10)/2
+CHA_mod = (CHA-10)/2
+WIS_mod = (WIS-10)/2
+
+final_score_mods = [STR_mod, DEX_mod, CON_mod, INT_mod, CHA_mod, WIS_mod]
+
+"""
+A summary of the created character.
+"""
+
+char_name = raw_input("What would you like to name your character?: ")
+
+print("\n")
+
+i = 0
+aster_string = "*********"
+while i < len(char_name):
+    aster_string = aster_string + "*"
+    i = i+1
+aster_string = aster_string + "***********"
+
+print(aster_string)
+print("********* " + char_name.upper() + " *********")
+print(aster_string + "\n")
+char_race.displayAllDetails()
+char_class.displayAllDetails(skills)
+
+hp_lvl1 = char_class.hit_die + CON_mod
+
+#TODO: print final scores, health, etc
+
+print("\nSTAT\tSCORE\tMOD")
+print("-------------------")
+print("STR:\t" + str(STR)  + "\t+" + str(STR_mod))
+print("DEX:\t" + str(DEX)  + "\t+" + str(DEX_mod))
+print("CON:\t" + str(CON)  + "\t+" + str(CON_mod))
+print("INT:\t" + str(INT)  + "\t+" + str(INT_mod))
+print("CHA:\t" + str(CHA)  + "\t+" + str(CHA_mod))
+print("WIS:\t" + str(WIS)  + "\t+" + str(WIS_mod))
+
+print("\nCHARACTER DETAILS")
+print("-----------------")
+print("Level:\t\t1\tProficiency bonus:\t+2") # TODO: allow the user to set level, and level up the character
+print("Speed:\t\t" + str(char_race.speed))
+print("Hit Die:\t1d" + str(char_class.hit_die))
+print("Proficiency bonus:\t+2")
+
+print("\n")

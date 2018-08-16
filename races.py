@@ -12,7 +12,7 @@ class CharRace:
         race_object.traits = traits
 
     def displayDetails(a_race):
-        print("***** " + a_race.name.upper() + " *****")
+        print("********* " + a_race.name.upper() + " *********")
         print("Speed: " + str(a_race.speed))
         print("Racial bonuses:")
         if a_race.str != 0:
@@ -28,6 +28,14 @@ class CharRace:
         if a_race.wis != 0:
                 print("     WIS: +" + str(a_race.wis))
         print("Traits:\n" + a_race.traits + "\n\n")
+
+    def displayAllDetails(a_race):
+        print("********* " + a_race.name.upper() + " *********")
+        print("Speed: " + str(a_race.speed))
+        if a_race.name == "Human":
+            print("Languages: Common and one extra language of your choice\n\n")
+        else:
+            print("Traits:\n" + a_race.traits + "\n")
 
     def getScores(a_race):
         char_scores = [a_race.str, a_race.dex, a_race.con, a_race.int, a_race.cha, a_race.wis]
