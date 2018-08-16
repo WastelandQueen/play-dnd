@@ -2,10 +2,9 @@ import diceFunctions as dF
 
 from races import *
 from classes import *
-from operator import add
 
 def rollStats():
-# To make a new character, first roll 4d6, six times, and take the highest 3
+    # To make a new character, first roll 4d6, six times, and take the highest 3
 # each time. Note that the reason this function is not in diceFunctions is that
 # it will only ever be used to roll up a new character.
     scores = []
@@ -253,7 +252,7 @@ print("WIS:\t" + str(WIS)  + "\t+" + str(WIS_mod))
 
 print("\nCHARACTER DETAILS")
 print("-----------------")
-print("Level:\t\t1\tProficiency bonus:\t+2") # TODO: allow the user to set level, and level up the character
+print("Level:\t\t1") # TODO: allow the user to set level, and level up the character
 print("Speed:\t\t" + str(char_race.speed))
 print("Hit Die:\t1d" + str(char_class.hit_die))
 print("Proficiency bonus:\t+2")
