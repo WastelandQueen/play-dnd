@@ -48,7 +48,7 @@ class CharClass:
         while j < a_class.pick_num:
             found = False
             while found == False:
-                # if the input skill matches a valid skill option, set it as the
+                # If the input skill matches a valid skill option, set it as the
                 # first proficiency choice and update the j counter and go to the
                 # next iteration of the loop
                 index = 0
@@ -62,7 +62,7 @@ class CharClass:
                         j = j+1
                         break
                     index = index + 1
-                # if not try again, do not update j counter
+                # If not try again, do not update j counter
                 if found == False:
                     print("\nThat is not a  valid skill option. Please try again. Your remaining options are: ")
                     printPretty(len(class_options), pretty_options)
@@ -75,8 +75,6 @@ class CharClass:
         print("")
 
         return skill_proficiencies
-
-            # if not try again, do not update j counter
 
     def displayAllDetails(a_class, skills):
         all_skills_list_pretty = ["Animal Handling    ", "Athletics          ", "Intimidation       ", "Nature             ", "Perception         ", "Survival           ", "History            ", "Insight            ", "Medicine           ", "Persuasion         ", "Religion           ", "Arcana             ", "Acrobatics         ", "Stealth            ", "Investigation      ", "Deception          ", "Performance        ", "Sleight of Hand    "]
