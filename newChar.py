@@ -30,7 +30,7 @@ def allocateScores(scores_string, char_scores):
         if i == 0:  # display all scores
             scores_string = makeScoresString(char_scores)
             print("\nHere are your scores: " + scores_string)
-            value = input("Which score value would you like to put in " + ability_scores_string[i] + "?: ")
+            value = int(input("Which score value would you like to put in " + ability_scores_string[i] + "?: "))
             if value in char_scores:
                 char_scores_allocated = char_scores_allocated + [value]
                 char_scores.remove(value)
@@ -40,7 +40,7 @@ def allocateScores(scores_string, char_scores):
         elif i < 5: # display remaining scores
             scores_string = makeScoresString(char_scores)
             print("\nRolls remaining: " + scores_string)
-            value = input("Which score value would you like to put in " + ability_scores_string[i] + "?: ")
+            value = int(input("Which score value would you like to put in " + ability_scores_string[i] + "?: "))
             if value in char_scores:
                 char_scores_allocated = char_scores_allocated + [value]
                 char_scores.remove(value)
@@ -89,7 +89,7 @@ submatches_race = 0         # The number of times a subrace name matches a subra
 items_matched_race = []     # The races that match the input
 subitems_matched_race = []  # The subraces that match the input
 
-race_input = raw_input("\nEnter the race you would like to play (Example: Hill Dwarf or elf): ")
+race_input = input("\nEnter the race you would like to play (Example: Hill Dwarf or elf): ")
 
 for race_name in race_names:
     if race_input.lower() in race_name.lower():
@@ -100,7 +100,7 @@ if matches_race > 1: # More than one match is found between user input and racia
     print("\nThe race you have chosen has the following subraces: ")
     for item in items_matched_race:
         print(item)
-    subrace_input = raw_input("Which subrace would you like to play? (Example: rock gnome or Hill): ")
+    subrace_input = input("Which subrace would you like to play? (Example: rock gnome or Hill): ")
     for race_name in items_matched_race:
         if subrace_input.lower() in race_name.lower():
             submatches_race = submatches_race+1
@@ -141,7 +141,7 @@ print("Druid            Fighter         Monk")
 print("Paladin          Ranger          Rogue")
 print("Sorcerer         Warlock         Wizard")
 
-class_input = raw_input("\nEnter the class you would like to play (Example: monk or Wizard): ")
+class_input = input("\nEnter the class you would like to play (Example: monk or Wizard): ")
 
 for class_name in class_names:
     if class_input.lower() in class_name.lower():
@@ -181,7 +181,7 @@ while True:
     char_scores.sort(reverse=True)
     scores_string = makeScoresString(char_scores)
     print("You rolled the following scores: " + scores_string)
-    cond = raw_input("Would you like to reroll (y/n)?: ")
+    cond = input("Would you like to reroll (y/n)?: ")
     if cond.lower() == "y":
         print("Rerolling...\n")
     elif cond.lower() == "n":
@@ -221,7 +221,7 @@ final_score_mods = [STR_mod, DEX_mod, CON_mod, INT_mod, CHA_mod, WIS_mod]
 A summary of the created character.
 """
 
-char_name = raw_input("What would you like to name your character?: ")
+char_name = input("What would you like to name your character?: ")
 
 print("\n")
 

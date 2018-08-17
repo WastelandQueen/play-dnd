@@ -52,7 +52,7 @@ class CharClass:
                 # first proficiency choice and update the j counter and go to the
                 # next iteration of the loop
                 index = 0
-                skill = raw_input("Enter your " + st_nd_rd_th[j] + " skill proficiency choice: ")
+                skill = input("Enter your " + st_nd_rd_th[j] + " skill proficiency choice: ")
                 for option in class_options:
                     if skill.lower() == option.lower():
                         skill_proficiencies.append(option)
