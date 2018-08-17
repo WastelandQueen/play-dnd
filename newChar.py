@@ -2,7 +2,7 @@ import diceFunctions as dF
 
 from races import *
 from classes import *
-from character import *
+#from character import *
 
 def rollStats():
     # To make a new character, first roll 4d6, six times, and take the highest 3
