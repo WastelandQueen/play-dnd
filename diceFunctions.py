@@ -8,7 +8,6 @@ def roll(numDice, numSides, modifier=0, total='sum'):
     if total == 'sum':
         for times in range(numDice):
             sumtotal += random.randint(1, numSides)
-        print('end')
         return sumtotal + modifier
     elif total == 'list':
         for times in range(numDice):

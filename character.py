@@ -19,7 +19,7 @@ class character:
         index = 0
         ability_scores_string = [ "STR", "DEX", "CON", "INT", "CHA", "WIS" ]
         for score in char.ability_scores:
-            if ((score-10)/2) > 0:
+            if ((score-10)/2) >= 0:
                 print(ability_scores_string[index] + ":\t" + str(score) + "\t+" + str((score-10)/2))
                 index = index + 1
             else:
