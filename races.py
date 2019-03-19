@@ -1,6 +1,6 @@
 
 class CharRace:
-    def __init__(race_object, name, speed, str, dex, con, int, wis, cha,traits):
+    def __init__(race_object, name, speed, str, dex, con, int, wis, cha, traits):
         race_object.name = name
         race_object.str = str
         race_object.dex = dex

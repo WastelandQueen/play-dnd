@@ -13,3 +13,16 @@ def roll(numDice, numSides, modifier=0, total='sum'):
         for times in range(numDice):
             scores.append(random.randint(1, numSides) + modifier)
         return scores
+
+def diceRoller():
+    a = True
+    while a is True:
+        numDice = int(input("# of dice: "))
+        if numDice == 0:
+            a = False
+            break
+        numSides = int(input("# of sides: "))
+        modifier = int(input("modifier: "))
+        score = roll(numDice, numSides, modifier)
+        print("You rolled: ")
+        print(score)
